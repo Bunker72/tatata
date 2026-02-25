@@ -5,12 +5,9 @@
     <title>Il sito da consultazione</title>
     <style>
         body {
-            background-color: #DEEAF6; /* sfondo azzurro */
+            background-color: #DEEAF6;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0 80px; /* margini laterali come secondo codice */
-            box-sizing: border-box;
-            display: none; /* nasconde tutto inizialmente */
+            padding: 0 80px; /* margini laterali più ampi */
         }
 
         h1 {
@@ -18,40 +15,32 @@
             text-align: center;
         }
 
+        /* Linee uniformi su tutti i dispositivi */
         hr {
-            border: none;
+            border: none;               /* rimuove bordi predefiniti */
             border-top: 2px solid gray; /* linea uniforme */
-            height: 0;
+            height: 0;                  /* l’altezza viene definita dal bordo */
             width: 100%;
             margin: 20px 0;
-            box-sizing: content-box;
+            box-sizing: content-box;    /* evita problemi di dimensioni su schermi ad alta densità */
         }
 
         h2 {
-            font-style: italic; /* sottotitoli in italico */
+            font-style: italic;
         }
 
-        /* Riquadro modificabile */
-        #editable-text {
-            width: 100%;
-            min-height: 200px;
-            max-width: 100%;
-            background-color: #ffffff; /* sfondo bianco */
-            border: 2px solid #000000; /* bordo nero */
-            border-radius: 10px; /* angoli stondati */
-            padding: 15px;
-            box-sizing: border-box;
-            overflow: hidden; /* elimina scroll interni */
-            resize: none; /* impedisce ridimensionamento manuale */
-            display: none; /* nascosto inizialmente */
-            font-size: 16px;
+        /* Spazio tra i file */
+        li {
+            margin-bottom: 10px;
         }
 
-        #editable-text:focus {
-            outline: none;
+        /* Hover sui link */
+        a:hover {
+            color: blue;
+            text-decoration: underline;
         }
 
-        /* Responsive per schermi piccoli */
+        /* Margini più piccoli su schermi piccoli */
         @media (max-width: 600px) {
             body {
                 padding: 0 20px;
@@ -62,45 +51,44 @@
 <body>
     <h1>MICROBIOLOGIA DEGLI ALIMENTI</h1>
     <hr>
+    <h2>File PDF:</h2>
+    <ul>
+        <li><a href="pdf/LEZIONE-1.pdf" target="_blank" rel="noopener noreferrer">LEZIONE-1</a></li>
+        <li><a href="pdf/LEZIONE-2.pdf" target="_blank" rel="noopener noreferrer">LEZIONE-2</a></li>
+        <li><a href="pdf/LEZIONE-3.pdf" target="_blank" rel="noopener noreferrer">LEZIONE-3</a></li>
+        <li><a href="pdf/LEZIONE-4.pdf" target="_blank" rel="noopener noreferrer">LEZIONE-4</a></li>
+        <li><a href="pdf/LEZIONE-5.pdf" target="_blank" rel="noopener noreferrer">LEZIONE-5</a></li>
+        <li><a href="pdf/LEZIONE-6.pdf" target="_blank" rel="noopener noreferrer">LEZIONE-6</a></li>
+        <li><a href="pdf/metagenomica_amplicon.pdf" target="_blank" rel="noopener noreferrer">metagenomica_amplicon</a></li>
+        <li><a href="pdf/Shotgun Metagenomic.pdf" target="_blank" rel="noopener noreferrer">Shotgun Metagenomic</a></li>
+        <li><a href="pdf/Il ruolo dei microrganismi negli alimenti.pdf" target="_blank" rel="noopener noreferrer">Il ruolo dei microrganismi negli alimenti</a></li>
+        <li><a href="pdf/Fattori Intrinseci e lecofisiologia dei microrganismi.pdf" target="_blank" rel="noopener noreferrer">Fattori Intrinseci e lecofisiologia dei microrganismi</a></li>
+        <li><a href="pdf/Fattori estrinseci di processo e impliciti.pdf" target="_blank" rel="noopener noreferrer">Fattori estrinseci di processo e impliciti</a></li>
+        <li><a href="pdf/L11_Stato Fisiologico e adattamento microbico.pdf" target="_blank" rel="noopener noreferrer">L11_Stato Fisiologico e adattamento microbico</a></li>
+        <li><a href="pdf/L12_Gram positivi di interesse alimentare.pdf" target="_blank" rel="noopener noreferrer">L12_Gram positivi di interesse alimentare</a></li>
+        <li><a href="pdf/L13_Gram negativi di interesse alimentare.pdf" target="_blank" rel="noopener noreferrer">L13_Gram negativi di interesse alimentare</a></li>
+        <li><a href="pdf/L14_Batteri Sporigeni Lieviti e funghi.pdf" target="_blank" rel="noopener noreferrer">L14_Batteri Sporigeni Lieviti e funghi</a></li>
+        <li><a href="pdf/L15_Fermentazione, Starter Microbici e Interazione con il Microbioma.pdf" target="_blank" rel="noopener noreferrer">L15_Fermentazione, Starter Microbici e Interazione con il Microbioma</a></li>
+        <li><a href="pdf/L16_Malattie a Trasmissione Alimentare (MTA).pdf" target="_blank" rel="noopener noreferrer">L16_Malattie a Trasmissione Alimentare (MTA)</a></li>
+        <li><a href="pdf/L17_La gestione della sicurezza alimentare.pdf" target="_blank" rel="noopener noreferrer">L17_La gestione della sicurezza alimentare</a></li>
+    </ul>
 
-    <h2>Testo:</h2>
-    <div id="editable-text" contenteditable="true"></div>
+    <hr>
+    <h2>ESERCIZI:</h2>
+    <ul>
+        <li><a href="pdf/Wooclap.pdf" target="_blank" rel="noopener noreferrer">Wooclap</a></li>
+        <li><a href="pdf/Wooclap_L2.pdf" target="_blank" rel="noopener noreferrer">Wooclap_L2</a></li>
+        <li><a href="pdf/Wooclap_L3.pdf" target="_blank" rel="noopener noreferrer">Wooclap_L3</a></li>
+        <li><a href="pdf/Wooclap_fattori intrinseci.pdf" target="_blank" rel="noopener noreferrer">Wooclap_fattori intrinseci</a></li>
+        <li><a href="pdf/wooclap_Fattori estrinseci e tecniche innnovative.pdf" target="_blank" rel="noopener noreferrer">wooclap_Fattori estrinseci e tecniche innnovative</a></li>
+        <li><a href="pdf/Wooclap_ESERCIZIO.pdf" target="_blank" rel="noopener noreferrer">Wooclap_ESERCIZIO</a></li>
+    </ul>
 
-    <script>
-        const password = "BNK-3R";
-        const userPassword = prompt("Inserisci la password per modificare il testo:");
-
-        if (userPassword === password) {
-            // Mostra il corpo della pagina solo se la password è corretta
-            document.body.style.display = "block";
-
-            const editable = document.getElementById("editable-text");
-            editable.style.display = "block";
-
-            // Carica testo salvato se presente
-            const savedText = localStorage.getItem("editableText");
-            if (savedText) {
-                editable.innerText = savedText;
-            }
-
-            // Salvataggio automatico e adattamento altezza
-            function adjustHeight() {
-                editable.style.height = 'auto'; // reset
-                editable.style.height = editable.scrollHeight + 'px';
-            }
-
-            editable.addEventListener("input", function() {
-                localStorage.setItem("editableText", editable.innerText);
-                adjustHeight();
-            });
-
-            // Aggiorna altezza al caricamento
-            window.addEventListener("load", adjustHeight);
-
-        } else {
-            // Non mostrare nulla se password errata
-            alert("Password errata! Non puoi modificare il testo.");
-        }
-    </script>
+    <!-- NUOVA SEZIONE -->
+    <hr>
+    <h2>Testo modificabile:</h2>
+    <ul>
+        <li><a href="https://www.esempio.com" target="_blank" rel="noopener noreferrer">Vai alla pagina</a></li>
+    </ul>
 </body>
 </html>
