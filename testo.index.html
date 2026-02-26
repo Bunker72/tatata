@@ -67,63 +67,67 @@
     <div id="editable-text" contenteditable="true"></div>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  const firebaseConfig = {
+// Configurazione Firebase
+const firebaseConfig = {
     apiKey: "AIzaSyArxR7bv96i4_vr6UPli0w-L_Q2Gv-qy1U",
     authDomain: "salvataggio-testo-8a71b.firebaseapp.com",
     projectId: "salvataggio-testo-8a71b",
     storageBucket: "salvataggio-testo-8a71b.firebasestorage.app",
     messagingSenderId: "1069514262117",
     appId: "1:1069514262117:web:f9c4bdef9c84b30b15688c"
-  };
+};
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  const password = "BNK-3R";
-  const userPassword = prompt("Inserisci la password per modificare il testo:");
+// PASSWORD per modificare
+const password = "BNK-3R";
+const userPassword = prompt("Inserisci la password per modificare il testo:");
 
-  if (userPassword === password) {
-    document.body.style.display = "block";
+if (userPassword === password) {
+  document.body.style.display = "block";
+  const editable = document.getElementById("editable-text");
+  editable.style.display = "block";
 
-    const editable = document.getElementById("editable-text");
-    editable.style.display = "block";
+  const docRef = doc(db, "contenuti", "microbiologia");
 
-    const docRef = doc(db, "contenuti", "microbiologia");
-
-    async function loadText() {
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        editable.innerText = docSnap.data().testo;
-      }
-      adjustHeight();
+  async function loadText() {
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      editable.innerText = docSnap.data().testo;
     }
-
-    async function saveText() {
-      await setDoc(docRef, {
-        testo: editable.innerText
-      });
-    }
-
-    function adjustHeight() {
-      editable.style.height = 'auto';
-      editable.style.height = editable.scrollHeight + 'px';
-    }
-
-    editable.addEventListener("input", function() {
-      saveText();
-      adjustHeight();
-    });
-
-    window.addEventListener("load", loadText);
-
-  } else {
-    alert("Password errata! Non puoi modificare il testo.");
+    adjustHeight();
   }
+
+  async function saveText() {
+    // Invia anche la password per poter scrivere secondo le regole Firestore
+    await setDoc(docRef, {
+      testo: editable.innerText,
+      password: password
+    });
+  }
+
+  function adjustHeight() {
+    editable.style.height = 'auto';
+    editable.style.height = editable.scrollHeight + 'px';
+  }
+
+  editable.addEventListener("input", function() {
+    saveText();
+    adjustHeight();
+  });
+
+  window.addEventListener("load", loadText);
+
+} else {
+  alert("Password errata! Non puoi modificare il testo.");
+}
 </script>
 </body>
 
 </html>
+
 
