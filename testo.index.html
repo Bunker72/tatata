@@ -66,41 +66,63 @@
     <h2>Testo:</h2>
     <div id="editable-text" contenteditable="true"></div>
 
-    <script>
-        const password = "BNK-3R";
-        const userPassword = prompt("Inserisci la password per modificare il testo:");
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-        if (userPassword === password) {
-            // Mostra il corpo della pagina solo se la password è corretta
-            document.body.style.display = "block";
+  const firebaseConfig = {
+    apiKey: "AIzaSyDOfanUm5kOeO8NUK6bYczOd0iLFloX3vk",
+    authDomain: "salvataggio-testo.firebaseapp.com",
+    projectId: "salvataggio-testo",
+    storageBucket: "salvataggio-testo.firebasestorage.app",
+    messagingSenderId: "895165422337",
+    appId: "1:895165422337:web:fca20a6cb562829ad29900"
+  };
 
-            const editable = document.getElementById("editable-text");
-            editable.style.display = "block";
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-            // Carica testo salvato se presente
-            const savedText = localStorage.getItem("editableText");
-            if (savedText) {
-                editable.innerText = savedText;
-            }
+  const password = "BNK-3R";
+  const userPassword = prompt("Inserisci la password per modificare il testo:");
 
-            // Salvataggio automatico e adattamento altezza
-            function adjustHeight() {
-                editable.style.height = 'auto'; // reset
-                editable.style.height = editable.scrollHeight + 'px';
-            }
+  if (userPassword === password) {
+    document.body.style.display = "block";
 
-            editable.addEventListener("input", function() {
-                localStorage.setItem("editableText", editable.innerText);
-                adjustHeight();
-            });
+    const editable = document.getElementById("editable-text");
+    editable.style.display = "block";
 
-            // Aggiorna altezza al caricamento
-            window.addEventListener("load", adjustHeight);
+    const docRef = doc(db, "contenuti", "microbiologia");
 
-        } else {
-            // Non mostrare nulla se password errata
-            alert("Password errata! Non puoi modificare il testo.");
-        }
-    </script>
+    async function loadText() {
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        editable.innerText = docSnap.data().testo;
+      }
+      adjustHeight();
+    }
+
+    async function saveText() {
+      await setDoc(docRef, {
+        testo: editable.innerText
+      });
+    }
+
+    function adjustHeight() {
+      editable.style.height = 'auto';
+      editable.style.height = editable.scrollHeight + 'px';
+    }
+
+    editable.addEventListener("input", function() {
+      saveText();
+      adjustHeight();
+    });
+
+    window.addEventListener("load", loadText);
+
+  } else {
+    alert("Password errata! Non puoi modificare il testo.");
+  }
+</script>
 </body>
+
 </html>
